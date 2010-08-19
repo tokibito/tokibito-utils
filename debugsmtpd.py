@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 import sys
 import asyncore
@@ -51,4 +52,5 @@ if __name__ == '__main__':
 
     options, args = parser.parse_args()
 
-    run(options.host, options.port, options.debug, options.outdir)
+    print 'Starting SMTP server %s:%s ...' % (options.host, options.port)
+    run(options.host, int(options.port), options.debug, options.outdir)
