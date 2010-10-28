@@ -46,11 +46,11 @@ if __name__ == '__main__':
     parser = OptionParser()
 
     parser.add_option('--host', dest='host', default='localhost', help='hostname')
-    parser.add_option('--port', dest='port', default=8025, help='port number')
+    parser.add_option('--port', dest='port', default=8025, type='int', help='port number')
     parser.add_option('--outdir', dest='outdir', default='.', help='output directory')
-    parser.add_option('--debug', action='store_true', dest='debug', help='use DebuggingServer')
+    parser.add_option('--nodebug', action='store_true', dest='nodebug', help='use DebuggingServer')
 
     options, args = parser.parse_args()
 
-    print 'Starting SMTP server %s:%s ...' % (options.host, options.port)
-    run(options.host, int(options.port), options.debug, options.outdir)
+    print 'Starting SMTP server %s:%s output=%s' % (options.host, options.port, options.nodebug and options.outdir or '(stdout)')
+    run(options.host, options.port, not options.nodebug, options.outdir)
